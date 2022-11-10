@@ -1,0 +1,39 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { generoCreacionDTO, generoDTo } from './genero';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GenerosService {
+
+  constructor(private http: HttpClient) { }
+
+  private apiURL = environment.apiURL + 'generos';
+
+  public obtenerTodos(pagina: number, cantidadRegistrosAMostrar: number): Observable<any>{
+    // estos params para que funione la paginacion
+    let params = new HttpParams();
+    params = params.append('pagina', pagina.toString());
+    params = params.append('recordsPorPagina', cantidadRegistrosAMostrar.toString());
+    return this.http.get<generoDTo[]>(this.apiURL, {observe: 'response', params});
+  }
+
+  public obtenerPorId(id: number): Observable<generoDTo>{
+    return this.http.get<generoDTo>(`${this.apiURL}/${id}`);
+  }
+
+  public crear(genero: generoCreacionDTO){
+    return this.http.post(this.apiURL, genero);
+  }
+
+  public editar(id: number, genero: generoCreacionDTO){
+    return this.http.put(`${this.apiURL}/${id}`, genero);
+  }
+
+  public borrar(id: number){
+    return this.http.delete(`${this.apiURL}/${id}`); //mando url junto con el id del genero
+  }
+}
