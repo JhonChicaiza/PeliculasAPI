@@ -1,0 +1,172 @@
+CREAR APLICACION ANGULAR
+-Crear carpeta
+-Comando = ng new ___nombre___ --strict=false
+-Moverse a la carpeta creada con = cd
+-Abrir en el Code = code .
+
+Abrir aplicacion en el navegador
+-Abrir terminal
+-Comando = ng serve -o 
+
+Crear Web Api Visual Studio
+-Proyecto = web api
+-ctrl + f5 para abrir en el navegador
+
+Crear Web Api en Visual Studio Code
+-Dentro de la carpeta CursoAngularCore abrir powershell
+- Comando = dotnet new webapi -o bac-kend
+
+Abrir en el navegador en Visual Studio Code
+-Comando = dotnet run
+-Escoger cualquier link, en especial https
+
+Si tengo problemas con el certificado
+-Comando en terminal = dotnet dev-certs https --trust
+
+**Git curso = https://github.com/gavilanch/Angular-y-ASP.NET-Core**
+
+Compilar pruebas
+-Comando = ng test
+
+
+INTERPOLACION (Para colocar texto dinamico en HTML)
+
+Se coloca dentre de doble llave {{}}, estas seran evaluadas al ser javascrit
+
+
+PIPES | (Ttasforma el formato de un dato)
+
+
+DIRECTIVA NG FOR (Itera una coleccion)
+
+
+Si quiero poner indices (0,1,2,3...)
+-Dentro del ngFor (; let index = index)
+Luego en el div = Pelicula {{index}}:
+
+
+ngOnInit (ocultar un componente antes que inicie la aplicacion, con 
+tiempo que se establesca)
+-Esto se hace en app.componentes.ts
+-Class = AppComponent __implements__ OnInInit{}
+-setTimeout (() => {__clase peliculas__})
+-En el html = *ngIf='!peliculas'
+
+
+Generar componentes
+-Terminal = ng generate component peliculas/listado-peliculas --dry-run
+con --dry-run solo muestra lo que hubiera creado pero no lo hace
+-Para omitir generar cosas= --skip-tests=true
+
+PARAMETROS (enviar parametros a cualquier otro lugar que yo quiera
+enciar datos)
+
+@Input()
+
+EVENTOS (enviar datos de la plantilla a los componentes)
+
+NG CONTAINER (agrupar elementos, sirve para agrupar en los divs)
+
+VARIABLE DE REFERENCIA DE PLANTILLA
+-Mediante un binding event se logra referenciar al input
+
+PROYECCION DE CONTENIDO (Permite mandar como parametro contenido 
+html)
+
+CREAR UN MODULO DE MATERIAL
+-Comando = ng generate module __material__
+
+
+material.io/resources/icons/?style=baseline
+--------------------------------------------------------------------
+
+ngClass = permite dinamicamente agregar o remover una clase de ccs
+
+--------------------------------------------------------------------
+
+CICLO DE VIDA DE UN COMPONENTE EJEMPLOS
+
+OnChanges= permite saber el valor anterior y el actual, si existe 
+algun cambio.
+
+--------------------------------------------------------------------
+
+RUTEO
+
+-En el archivo app-routing.module.ts
+-En [] = crear un obeto
+	-{path: '__lo que se va a ver en ela url__'}
+	-Crear un componente = landing-page
+	-{path: '', component: LandingPageComponent}
+
+
+NAVEGACION POR JAVASCRIPT
+
+-Los servicios se inyectan a traves del constructor de la clase
+constructor(private router: Router)
+
+Para poder editar se necesita una variable de ruta, para crear 
+variables de ruteo de hacde de siguiente forma:
+-En app-routing.module.ts
+-path: 'actores/editar/:id',
+
+
+Servicio activatedRoute
+-Podemos obtener informacion acerca de la ruta donde se encuentra el
+usuario
+
+WILDCARD (atrapa cualquier ruta) 
+-Implementar = {path: '**', redirectTo: ''}
+-Gracias a esto no muestra el texto incorrecto que este en la URL
+
+-------------------------------------------------------------------
+
+Formularios por plantilla y reactivos
+
+-import {ReactiveFormsModule} from '@angular/forms'
+-Tambien se debe importar = ReactiveFormsModule
+
+-Para configurar los formularios se necesita un servicio llamado:
+private formBuilder: FormBuilder
+
+-Para que un boton no este activo mientras no se haya ingresado texto
+en el texbox = [disabled]="form.invalid"
+
+-Agregar validaciones propias de angular= 
+ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      nombre: ['', {
+        validators: [Validators.required, Validators.minLength(3)]
+      }]
+    });
+  }
+
+-Validaciones personalizadas
+
+
+--------------------------------------------------------------------
+
+Para que la URL mantenga los filtros que se aplique y otro usuario
+pueda abrir dicha URL y se mantengan los cambios
+
+
+QueryStrings
+
+-Se crea un metodo con todos los valores del filtro
+-Crear un servicio en el constructor = private location: Location
+-Al final del metodo =     this.location.replaceState('peliculas/buscar', queryStrings.join('&'));
+
+Definir que se apliquen los queruString en los campos 
+-
+
+
+-------------------
+
+MARKDOWN (permite tener texto con estilo)
+-Instalar libereria: npm i ngx-markdown
+-Crear componente que encapsule la funcionaidad de markdown
+
+
+
+
+

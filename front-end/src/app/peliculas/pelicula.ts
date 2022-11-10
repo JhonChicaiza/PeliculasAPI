@@ -1,3 +1,6 @@
+import { cineDTO } from "../cines/cine";
+import { generoDTo } from "../generos/genero";
+
 export interface PeliculaCreacionDTO{
     titulo: string;
     resumen: string;
@@ -15,4 +18,9 @@ export interface PeliculaDTO{
     fechaLanzamiento: Date;
     trailer: string;
     poster: string;
+}
+
+export interface PeliculaPostGet{
+    genero: generoDTo[];
+    cines: cineDTO[];
 }
